@@ -18,9 +18,10 @@ $ cd EDS
 
 ### Knowledge Representation & Reasoning
 
-* https://web.media.mit.edu/~minsky/papers/Frames/frames.html
+* https://www.quora.com/Which-programming-languages-need-to-be-learned-in-the-future/answer/Dmitry-Ponyatov
 * https://www.quora.com/How-can-I-make-a-knowledge-graph-in-programming
   * https://qr.ae/pRXL4X
+* https://web.media.mit.edu/~minsky/papers/Frames/frames.html
 
 ### eLearning
 

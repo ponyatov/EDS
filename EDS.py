@@ -9,7 +9,7 @@ import os,sys
 def comment(text,width=80):
     pfx = '#' * (width - len(text) - 1)
     print(pfx + ' ' + text) ; sys.exit(-1)
-# comment('eLearning')#,40)
+# comment('metaprogramming')#,40)
 
 
 
@@ -60,10 +60,11 @@ class Object:
 
     ############################## stack ops
 
-    def pop(self): return self.nest.pop()
+    def pop(self): return self.nest.pop(-1)
     def top(self): return self.nest[-1]
+    def pip(self): return self.nest.pop(-2)
+    def tip(self): return self.nest[-2]
     def dot(self): self.nest = [] ; return self
-
 
 
 ################################################################ primitive types
@@ -77,19 +78,6 @@ class Number(Primitive): pass
 class Integer(Number): pass
 class Hex(Integer): pass
 class Bin(Integer): pass
-
-
-
-############################################################################ I/O
-
-class IO(Object): pass
-class Dir(IO): pass
-class File(IO): pass
-
-######################################################################## Network
-
-class Net(IO): pass
-class IP(Net,Primitive): pass
 
 
 #################################################### active (executable) objects
@@ -132,13 +120,45 @@ vm['//'] = PUSH
 def DOT(env): env.dot()
 vm['.'] = DOT
 
+def DUP(env): env // env.top()
+vm >> DUP
 
+def DROP(env): env.pop()
+vm >> DROP
+
+def SWAP(env): env // env.pip()
+vm >> SWAP
+
+def OVER(env): env // env.tip()
+vm >> OVER
+
+def PRESS(env): env.pip()
+vm >> PRESS
+
+
+############################################################################ I/O
+
+class IO(Object): pass
+class Dir(IO): pass
+class File(IO): pass
+
+######################################################################## Network
+
+class Net(IO): pass
+class Socket(Net): pass
+class IP(Net,Primitive): pass
+class Port(Net): pass
+def port(env): env // Port(env.pop().val)
+vm >> port
+
+class Email(Net,Primitive): pass
+class URL(Net,Primitive): pass
 
 ########################################################## PLY: no-syntax parser
 
 import ply.lex as lex
 
-tokens = ['symbol','string','number','integer','hex','bin','ip','png']
+tokens = ['symbol','string','number','integer','hex','bin','ip','email','url','png']
 
 t_ignore         = ' \t\r\n'
 t_ignore_comment = r'\#.*'
@@ -168,14 +188,18 @@ def t_str_char(t):
     r'.'
     t.lexer.string += t.value
 
-
 def t_ip(t):
     r'([0-9]{1,3}\.){3}[0-9]{1,3}'
     return IP(t.value)
+def t_email(t):
+    r'[a-zA-Z0-9_]+ @ ([a-zA-Z0-9_]+\.){1,}[a-z]{2,3}'
+    return Email(t.value)
+def t_url(t):
+    r'https?://[^ \t\r\n]+'
+    return URL(t.value)
 def t_png(t):
     r'[a-zA-Z0-9_]+\.png'
     return PNG(t.value)
-
 
 def t_exp(t):
     r'[+\-]?[0-9]+(\.[0-9]*)?[eE][+\-]?[0-9]+'
@@ -229,9 +253,34 @@ def INTERP(env):
 
 
 
+################################################################ metaprogramming
+
+class Meta(Object): pass
+class Class(Meta):
+    def __init__(self,C):
+        Meta.__init__(self,C.__name__)
+        self.cons = C
+    def eval(self,env):
+        env // self.cons(env.pop().val)
+
 #################################################################### documenting
 
-class PNG(File,Primitive): pass
+class Doc(Object): pass
+
+class Color(Doc): pass
+def color(env): env // Color(env.pop().val)
+vm >> color
+
+class Font(Doc): pass
+# def font(env): env // Font(env.pop().val)
+vm >> Class(Font)
+
+class Size(Doc): pass
+
+def mm(env): env // Size('%smm' % env.pop().val)
+vm >> mm
+
+class PNG(Doc,File,Primitive): pass
 
 
 ###################################################################### eLearning
@@ -243,11 +292,24 @@ class PNG(File,Primitive): pass
 class Web(Net):
     def eval(self,env):
         print(env)
-        from flask import Flask,Response,render_template
-        app = Flask(self.val)
 
-        @app.route('/')
-        def index(): return render_template('index.html',env=env)
+        from flask      import Flask,Response,render_template
+        from flask_wtf  import FlaskForm
+        from wtforms    import TextAreaField,SubmitField
+
+        app = Flask(self.val)
+        app.config['SECRET_KEY'] = os.urandom(32)
+
+        class CLI(FlaskForm):
+            pad = TextAreaField('pad',render_kw={'rows':5,'autofocus':'true'})
+            go = SubmitField('go')
+
+        @app.route('/', methods=['GET', 'POST'])
+        def index():
+            form = CLI()
+            if form.validate_on_submit():
+                env // String(form.pad.data) ; INTERP(env)
+            return render_template('index.html',env=env,form=form)
 
         @app.route('/css.css')
         def css(): return Response(render_template('css.css',env=env),mimetype='text/css')
@@ -259,12 +321,11 @@ class Web(Net):
 
 vm['WEB'] = Web(vm.head())
 
-def mm(env): env // Symbol('%smm' % env.pop().val)
-vm >> mm
 
 #################################################################### system init
 
 if __name__ == '__main__':
+    print(vm)
     for infile in sys.argv[1:]:
         with open(infile) as src:
             vm // String(src.read()) ; INTERP(vm)

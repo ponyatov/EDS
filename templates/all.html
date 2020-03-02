@@ -8,4 +8,25 @@
 </div>
 {% endblock %}
 
+{% block cli %}
+<form id=cli method=post onkeypress="ctrlEnter(event, this);">
+    {{form.hidden_tag()}}
+    {{form.pad()}}
+    {{form.go()}}
+</form>
+{% endblock %}
+
+<script>
+{% block script %}
+function $(elemid) { return document.getElementById(elemid);        }
+function $$(tagid) { return document.getElementsByTagName(strTag);  }
+
+function ctrlEnter(event, form) {
+    if((event.ctrlKey) && ((event.keyCode == 0x0A)||(event.keyCode == 0x0D)))
+        form.go.click();
+}
+
+{% endblock %}
+</script>
+
 </html>
