@@ -42,7 +42,7 @@ debian:
 
 .PHONY: merge release zip
 
-MERGE  = Makefile README.md .gitignore $(MODULE).*
+MERGE  = Makefile README.md .gitignore $(MODULE).* requirements.txt static templates
 
 merge:
 	git checkout master
