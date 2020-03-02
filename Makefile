@@ -7,9 +7,13 @@ REL = $(shell git rev-parse --short=4 HEAD)
 PIP = $(CWD)/bin/pip3
 PY  = $(CWD)/bin/python3
 
+
+
 .PHONY: all
 all: $(PY) ./$(MODULE).py $(MODULE).ini
 	$^
+
+
 
 .PHONY: install
 install: debian $(PIP)
@@ -33,6 +37,8 @@ requirements.txt: $(PIP)
 debian:
 	sudo apt update
 	sudo apt install -u python3 python3-pyqt5
+
+
 
 .PHONY: merge release zip
 
