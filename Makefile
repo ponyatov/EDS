@@ -1,5 +1,6 @@
 CWD    = $(CURDIR)
 MODULE = $(notdir $(CWD))
+# MODULE = zo
 
 NOW = $(shell date +%d%m%y)
 REL = $(shell git rev-parse --short=4 HEAD)
@@ -42,7 +43,8 @@ debian:
 
 .PHONY: merge release zip
 
-MERGE  = Makefile README.md .gitignore $(MODULE).* requirements.txt static templates
+INI		= $(MODULE).ini
+MERGE	= Makefile README.md .gitignore $(MODULE).py $(INI) requirements.txt static templates
 
 merge:
 	git checkout master

@@ -9,7 +9,25 @@ import os,sys
 def comment(text,width=80):
     pfx = '#' * (width - len(text) - 1)
     print(pfx + ' ' + text) ; sys.exit(-1)
-# comment('metaprogramming')#,40)
+# comment('persistent storage')#,40)
+
+
+
+############################################################# persistent storage
+
+from ZODB import DB
+import persistent,transaction
+
+class ZO:
+    def __init__(self,file):
+        self.file = file
+        self.db = DB(None)#file)
+        self.connection = self.db.open()
+        self.root = self.connection.root()
+    def commit(self):
+        transaction.commit()
+
+db = ZO(sys.argv[0]+'.db')
 
 
 
@@ -66,6 +84,7 @@ class Object:
     def tip(self): return self.nest[-2]
     def dot(self): self.nest = [] ; return self
 
+# db.root = [1,2,3]
 
 ################################################################ primitive types
 

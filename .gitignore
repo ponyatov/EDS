@@ -8,3 +8,6 @@ lib/
 lib64
 pyvenv.cfg
 share/
+
+EDS.py.db*
+zo.py.*
