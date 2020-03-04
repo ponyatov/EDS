@@ -5,6 +5,7 @@
 
 github: https://github.com/ponyatov/EDS/
 
+patreon: https://www.patreon.com/dponyatov/
 
 ### Install
 
