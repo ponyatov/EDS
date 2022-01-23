@@ -78,7 +78,7 @@ Include dependency graph for EDS.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="EDS_8cpp__incl.png" border="0" usemap="#src_2EDS_8cpp" alt=""/></div>
 <map name="src_2EDS_8cpp" id="src_2EDS_8cpp">
-<area shape="rect" id="node2" href="EDS_8hpp.html" title="EDS.hpp" alt="" coords="419,80,493,107"/>
+<area shape="rect" id="node2" href="EDS_8hpp.html" title="EDS.hpp" alt="" coords="515,80,589,107"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -90,19 +90,57 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top"><a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char *argv[])</td></tr>
-<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b3a6a51688269a9f77d8a514e375e4c"><td class="memItemLeft" align="right" valign="top"><a id="a8b3a6a51688269a9f77d8a514e375e4c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int _argc, char *_argv[])</td></tr>
+<tr class="separator:a8b3a6a51688269a9f77d8a514e375e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga40cd1a77de77540bd03a4ffac7e5a68b"><td class="memItemLeft" align="right" valign="top">
 void&#160;</td><td class="memItemRight" valign="bottom"><b>yyerror</b> (string msg)</td></tr>
 <tr class="separator:ga40cd1a77de77540bd03a4ffac7e5a68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f4faba322a87e1d67f7bd7b80a77d86"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__wasd.html#ga0f4faba322a87e1d67f7bd7b80a77d86">colon</a> ()</td></tr>
+<tr class="memdesc:ga0f4faba322a87e1d67f7bd7b80a77d86"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>( token -- )</code> start compilation: <code>compile = <a class="el" href="classWord.html" title="FORTH executable word. ">Word</a>(token.val())</code> <br /></td></tr>
+<tr class="separator:ga0f4faba322a87e1d67f7bd7b80a77d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga253a63748ba4661ad2229f2e8a70659d"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__wasd.html#ga253a63748ba4661ad2229f2e8a70659d">semicolon</a> ()</td></tr>
+<tr class="memdesc:ga253a63748ba4661ad2229f2e8a70659d"><td class="mdescLeft">&#160;</td><td class="mdescRight">stop compilation: <code>compile = nil</code> <br /></td></tr>
+<tr class="separator:ga253a63748ba4661ad2229f2e8a70659d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b60c31eceb860aee728d068d0439d4f"><td class="memItemLeft" align="right" valign="top">
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__wasd.html#ga4b60c31eceb860aee728d068d0439d4f">q</a> ()</td></tr>
+<tr class="memdesc:ga4b60c31eceb860aee728d068d0439d4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">print VM state (D, W) <br /></td></tr>
+<tr class="separator:ga4b60c31eceb860aee728d068d0439d4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:ad1447518f4372828b8435ae82e48499e"><td class="memItemLeft" align="right" valign="top"><a id="ad1447518f4372828b8435ae82e48499e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>argc</b> = 0</td></tr>
+<tr class="separator:ad1447518f4372828b8435ae82e48499e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2efa898e9eed6fe6715279cb1ec35b0"><td class="memItemLeft" align="right" valign="top"><a id="af2efa898e9eed6fe6715279cb1ec35b0"></a>
+char **&#160;</td><td class="memItemRight" valign="bottom"><b>argv</b> = nullptr</td></tr>
+<tr class="separator:af2efa898e9eed6fe6715279cb1ec35b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga38a90f573445d89fb4ac010d6402f73d"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classStack.html">Stack</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__wasd.html#ga38a90f573445d89fb4ac010d6402f73d">D</a> (&quot;data&quot;)</td></tr>
-<tr class="memdesc:ga38a90f573445d89fb4ac010d6402f73d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data stack. <br /></td></tr>
+<tr class="memdesc:ga38a90f573445d89fb4ac010d6402f73d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[D]ata stack <br /></td></tr>
 <tr class="separator:ga38a90f573445d89fb4ac010d6402f73d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9f0ff1d115a54e90ebd09a0083d0d5fd"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classMap.html">Map</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__wasd.html#ga9f0ff1d115a54e90ebd09a0083d0d5fd">W</a> (&quot;words&quot;)</td></tr>
+<tr class="memdesc:ga9f0ff1d115a54e90ebd09a0083d0d5fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">[W]ords vocabulary <br /></td></tr>
+<tr class="separator:ga9f0ff1d115a54e90ebd09a0083d0d5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13cb5fa61b0ef9ed9100229f4be03f35"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classObject.html">Object</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__wasd.html#ga13cb5fa61b0ef9ed9100229f4be03f35">compile</a> = nullptr</td></tr>
+<tr class="memdesc:ga13cb5fa61b0ef9ed9100229f4be03f35"><td class="mdescLeft">&#160;</td><td class="mdescRight">compilation state <br /></td></tr>
+<tr class="separator:ga13cb5fa61b0ef9ed9100229f4be03f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga17c7d904c710526445fb4a6f016305b2"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classCmd.html">Cmd</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__wasd.html#ga17c7d904c710526445fb4a6f016305b2">nop</a> = new <a class="el" href="classCmd.html">Cmd</a>(&quot;nop&quot;)</td></tr>
+<tr class="memdesc:ga17c7d904c710526445fb4a6f016305b2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>( -- )</code> do nothing <br /></td></tr>
+<tr class="separator:ga17c7d904c710526445fb4a6f016305b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga409e444db61d3bbe7a3384ea306fd6c9"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classCmd.html">Cmd</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__wasd.html#ga409e444db61d3bbe7a3384ea306fd6c9">halt</a> = new <a class="el" href="classCmd.html">Cmd</a>(&quot;halt&quot;)</td></tr>
+<tr class="memdesc:ga409e444db61d3bbe7a3384ea306fd6c9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>( -- )</code> stop system <br /></td></tr>
+<tr class="separator:ga409e444db61d3bbe7a3384ea306fd6c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa6f976ad771bc73c40833a92e5dc4648"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classCmd.html">Cmd</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__wasd.html#gaa6f976ad771bc73c40833a92e5dc4648">ret</a> = new <a class="el" href="classCmd.html">Cmd</a>(&quot;ret&quot;)</td></tr>
+<tr class="memdesc:gaa6f976ad771bc73c40833a92e5dc4648"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>(R: addr -- )</code> return from nested call <br /></td></tr>
+<tr class="separator:gaa6f976ad771bc73c40833a92e5dc4648"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

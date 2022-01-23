@@ -1,5 +1,6 @@
 <map id="Core" name="Core">
 <area shape="rect" id="node2" href="$group__Meta.html" title="Metaprogramming. " alt="" coords="118,5,169,32"/>
 <area shape="rect" id="node3" href="$group__Container.html" title="Generic data structures. " alt="" coords="104,56,183,83"/>
-<area shape="rect" id="node4" href="$group__Primitive.html" title="Scalar data types. " alt="" coords="107,107,180,133"/>
+<area shape="rect" id="node4" href="$group__Active.html" title="Executable Data itself. " alt="" coords="114,107,173,133"/>
+<area shape="rect" id="node5" href="$group__Primitive.html" title="Scalar data types. " alt="" coords="107,157,180,184"/>
 </map>

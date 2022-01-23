@@ -1,0 +1,5 @@
+<map id="Active" name="Active">
+<area shape="rect" id="node3" href="$classCmd.html" title="virtual FORTH machine command " alt="" coords="5,155,56,181"/>
+<area shape="rect" id="node4" href="$classWord.html" title="FORTH executable word. " alt="" coords="80,155,133,181"/>
+<area shape="rect" id="node2" href="$classObject.html" title="base object (hyper)graph node " alt="" coords="38,5,98,32"/>
+</map>

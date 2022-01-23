@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['tag',['tag',['../classObject.html#a77c15b32807f02f9a7a4883b0ebd5806',1,'Object']]]
+  ['pad',['pad',['../classObject.html#a6cfbba91b55b8c41cb369d8014657f21',1,'Object']]],
+  ['pop',['pop',['../classObject.html#a28d5ffed16059e3f7645753b2f5a63a2',1,'Object']]],
+  ['push',['push',['../classObject.html#a204822e357c3c484c2038d15b7fcc537',1,'Object']]]
 ];

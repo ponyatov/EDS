@@ -3,6 +3,7 @@
 #define _EDS_H_
 
 #include <assert.h>
+#include <cxxabi.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,6 +13,7 @@
 using namespace std;
 
 #include <QApplication>
+#include <QDebug>
 #include <QLabel>
 #include <QTextStream>
 #include <QWidget>
@@ -25,11 +27,15 @@ class Object {
    protected:
     /// scalar: object name, string/number value,..
     QString value;
+    /// associative array = env/namespace = AST attributes
+    map<QString, Object*> slot;
+    /// ordered container = vector = stack = queue = AST subtrees
+    vector<Object*> nest;
 
    public:
     /// constructors
     Object(QString V);
-    virtual ~Object();
+    virtual ~Object() {}
 
     /// @name text tree dump / stringify
 
@@ -40,9 +46,18 @@ class Object {
     /// dump padding
     QString pad(int depth);
     /// class/type tag
-    QString tag();
+    virtual QString tag();
     /// stringified value
-    QString val();
+    virtual QString val();
+
+    /// @name operator
+
+    /// `A[key] = B` set slot
+    Object* setitem(QString key, Object* that);
+    /// `A // B ~> A.push(B)` push to nest
+    Object* push(Object* that);
+    /// pop from nest
+    Object* pop();
 };
 
 /// @defgroup Primitive
@@ -92,6 +107,29 @@ class Map : public Container {
     Map(QString V) : Container(V) {}
 };
 
+/// @defgroup Active
+/// @ingroup Core
+/// @brief Executable Data itself
+/// @{
+
+class Active : public Object {
+   public:
+    Active(QString V) : Object(V) {}
+};
+
+/// virtual FORTH machine command
+class Cmd : public Active {
+   public:
+    Cmd(QString V) : Active(V) {}
+};
+
+/// FORTH executable word
+class Word : public Active {
+   public:
+    Word(QString V) : Active(V) {}
+};
+/// @}
+
 /// @defgroup Meta
 /// @ingroup Core
 /// @brief Metaprogramming
@@ -122,20 +160,44 @@ class Token : public Syntax {
     Token(QString V) : Syntax(V) {}
 };
 
+class Label : public Syntax {
+   public:
+    Label(QString V) : Syntax(V) {}
+};
+
 /// @}
 
 /// @defgroup wasd WASD machine
 /// @brief FORTH-like object stack machine
 /// @{
 
-/// Words vocabulary
+/// [W]ords vocabulary
 extern Map W;
-/// Async message queue
+/// [A]sync message queue
 extern Queue A;
-/// return Stack
+/// return [S]tack
 extern Stack S;
-/// Data stack
+/// [D]ata stack
 extern Stack D;
+/// compilation state
+extern Object* compile;
+
+/// @name commands
+/// @{
+
+/// print VM state (D, W)
+extern void q();
+/// `( token -- )` start compilation: `compile = Word(token.val())`
+extern void colon();
+/// stop compilation: `compile = nil`
+extern void semicolon();
+/// `( -- )` do nothing
+extern Cmd* nop;
+/// `( -- )` stop system
+extern Cmd* halt;
+/// `(R: addr -- )` return from nested call
+extern Cmd* ret;
+/// @}
 /// @}
 
 /// @defgroup skelex
@@ -157,5 +219,8 @@ extern void yyerror(string msg);
     }
 // /
 // skelex
+
+extern int argc;
+extern char** argv;
 
 #endif  // _EDS_H_
