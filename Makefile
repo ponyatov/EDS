@@ -18,10 +18,10 @@ CURL  = curl -L -o
 CXX  ?= g++
 
 # \ src
-C += src/$(MODULE).cpp
-C += tmp/$(MODULE).parser.cpp tmp/$(MODULE).lexer.cpp
-H += src/$(MODULE).hpp
-H += tmp/$(MODULE).parser.hpp
+C  += src/$(MODULE).cpp
+CP += tmp/$(MODULE).parser.cpp tmp/$(MODULE).lexer.cpp
+H  += src/$(MODULE).hpp
+HP += tmp/$(MODULE).parser.hpp
 S += $(C) $(H)
 
 # \ cfg
@@ -31,11 +31,11 @@ CFLAGS = -pipe -O0 -g2 -I$(SRC) -I$(TMP)
 all: bin/$(MODULE) lib/$(MODULE).f
 	$^
 
-tmp/format_cpp: $(C) $(H) .clang-format
-	clang-format-11 -i -style=file $(C) $(H) && touch $@
+tmp/format_cpp: $(C) $(H)
+	clang-format-11 -i -style=file $? && touch $@
 
 # \ rule
-bin/$(MODULE): $(MODULE).mk $(C) $(H)
+bin/$(MODULE): $(MODULE).mk $(C) $(CP) $(H) $(HP)
 	make -f $<
 	$(MAKE) tmp/format_cpp
 $(MODULE).mk: $(MODULE).pro
@@ -64,3 +64,20 @@ Linux_install Linux_update:
 
 .PHONY: gz
 gz:
+
+# \ merge
+SHADOW ?= shadow
+MERGE  = Makefile README.md apt.txt doxy.gen $(S)
+MERGE += .vscode bin doc lib src tmp
+MERGE += .clang-format $(MODULE).pro
+
+.PHONY: dev shadow release
+dev:
+	git push -v
+	git checkout dev
+	git pull -v
+	git checkout $(SHADOW) -- $(MERGE)
+shadow:
+	git push -v
+	git checkout $(SHADOW)
+	git pull -v
