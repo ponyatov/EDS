@@ -1,0 +1,5 @@
+git make curl
+code meld doxygen
+build-essential g++ clang-format-11
+libpmem-dev
+qmake qt5-default

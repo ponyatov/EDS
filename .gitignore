@@ -1,0 +1,14 @@
+*~
+*.swp
+*.log
+
+/EDS/
+/docs/
+
+/target/
+*.lock
+
+/EDS.mk
+/.qmake.stash
+
+!.gitignore

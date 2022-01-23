@@ -1,0 +1,12 @@
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+BasedOnStyle: Google
+IndentWidth: 4
+ColumnLimit: 80
+
+AllowShortBlocksOnASingleLine: Always
+AllowShortFunctionsOnASingleLine: All
+
+Language: Cpp
+
+# Language: JavaScript
