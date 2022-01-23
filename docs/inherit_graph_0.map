@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classObject.html" title="base object (hyper)graph node " alt="" coords="5,208,65,235"/>
+<area shape="rect" id="node2" href="$classContainer.html" title="Container" alt="" coords="113,107,192,133"/>
+<area shape="rect" id="node7" href="$classMeta.html" title="Meta" alt="" coords="127,208,178,235"/>
+<area shape="rect" id="node11" href="$classPrimitive.html" title="Primitive" alt="" coords="116,259,189,285"/>
+<area shape="rect" id="node3" href="$classMap.html" title="string&#45;keyed Associative Array " alt="" coords="248,5,295,32"/>
+<area shape="rect" id="node4" href="$classQueue.html" title="FIFO Queue. " alt="" coords="241,56,301,83"/>
+<area shape="rect" id="node5" href="$classStack.html" title="LIFO Stack. " alt="" coords="243,107,299,133"/>
+<area shape="rect" id="node6" href="$classVector.html" title="Ordered container. " alt="" coords="241,157,301,184"/>
+<area shape="rect" id="node8" href="$classApp.html" title="App" alt="" coords="249,208,294,235"/>
+<area shape="rect" id="node9" href="$classSyntax.html" title="Syntax" alt="" coords="240,259,303,285"/>
+<area shape="rect" id="node10" href="$classToken.html" title="Token" alt="" coords="351,259,409,285"/>
+</map>

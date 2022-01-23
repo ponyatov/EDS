@@ -1,0 +1,4 @@
+<map id="App" name="App">
+<area shape="rect" id="node2" href="$classMeta.html" title="Meta" alt="" coords="10,80,61,107"/>
+<area shape="rect" id="node3" href="$classObject.html" title="base object (hyper)graph node " alt="" coords="5,5,65,32"/>
+</map>
