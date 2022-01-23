@@ -1,6 +1,9 @@
 # \ var
-MODULE   = $(notdir $(CURDIR))
-OS       = $(shell uname -s)
+MODULE = $(notdir $(CURDIR))
+OS     = $(shell uname -s)
+NOW    = $(shell date +%d%m%y)
+REL    = $(shell git rev-parse --short=4 HEAD)
+BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 
 # \ dir
 CWD = $(CURDIR)
@@ -67,17 +70,24 @@ gz:
 
 # \ merge
 SHADOW ?= shadow
-MERGE  = Makefile README.md apt.txt doxy.gen $(S)
-MERGE += .vscode bin doc lib src tmp
-MERGE += .clang-format $(MODULE).pro
+MERGE   = Makefile README.md apt.txt doxy.gen $(S)
+MERGE  += .vscode bin doc lib src tmp
+MERGE  += .clang-format $(MODULE).pro
 
-.PHONY: dev shadow release
+.PHONY: dev shadow release zip
+
 dev:
 	git push -v
 	git checkout dev
 	git pull -v
 	git checkout $(SHADOW) -- $(MERGE)
+
 shadow:
 	git push -v
 	git checkout $(SHADOW)
 	git pull -v
+
+release:
+	git tag $(NOW)-$(REL)
+	git push -v --tags
+	$(MAKE) shadow
